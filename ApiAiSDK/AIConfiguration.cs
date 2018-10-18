@@ -21,8 +21,9 @@ namespace ApiAiSDK
 {
 	public class AIConfiguration
 	{
-		private const string SERVICE_PROD_URL = Environment.GetEnvironmentVariable("SERVICE_PROD_URL") || "https://api.api.ai/v1/";
-		private const string SERVICE_DEV_URL  = Environment.GetEnvironmentVariable("SERVICE_DEV_URL") || "https://dev.api.ai/api/";
+
+		private const string SERVICE_PROD_URL = "https://api.api.ai/v1/";
+		private const string SERVICE_DEV_URL = "https://dev.api.ai/api/";
 
         private const string CURRENT_PROTOCOL_VERSION = "20150910";
         
