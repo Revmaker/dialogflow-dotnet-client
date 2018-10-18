@@ -21,8 +21,9 @@ namespace ApiAiSDK
 {
 	public class AIConfiguration
 	{
-		private const string SERVICE_PROD_URL = Environment.GetEnvironmentVariable("SERVICE_PROD_URL") || "https://api.api.ai/v1/";
-		private const string SERVICE_DEV_URL  = Environment.GetEnvironmentVariable("SERVICE_DEV_URL") || "https://dev.api.ai/api/";
+		public string SERVICE_PROD_URL { get; private set; }
+
+		public string SERVICE_DEV_URL { get; private set; }
 
         private const string CURRENT_PROTOCOL_VERSION = "20150910";
         
@@ -61,10 +62,28 @@ namespace ApiAiSDK
             }
         }
         	
-		public AIConfiguration(string clientAccessToken, SupportedLanguage language)
+		public AIConfiguration(string clientAccessToken, SupportedLanguage language, string prodUrl, string devUrl)
 		{
 			this.ClientAccessToken = clientAccessToken;
 			this.Language = language;
+			
+			if (string.IsNullOrEmpty(prodUrl))
+			{
+				this.SERVICE_PROD_URL = "https://api.api.ai/v1/";
+			}
+			else
+			{
+				this.SERVICE_PROD_URL = prodUrl;
+			}
+
+			if (string.IsNullOrEmpty(devUrl))
+			{
+				this.SERVICE_PROD_URL = "https://dev.api.ai/api/";
+			}
+			else
+			{
+				this.SERVICE_DEV_URL = devUrl;
+			}
 
 			DevMode = false;
 			DebugLog = false;
